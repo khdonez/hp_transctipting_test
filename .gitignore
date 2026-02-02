@@ -1,0 +1,8 @@
+__pycache__/
+.venv/
+*.py
+hp-transcripting/
+__pycache__/
+.venv/
+*.py
+*.txt
