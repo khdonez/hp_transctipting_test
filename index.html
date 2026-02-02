@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content {
+            font-size: 17px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        /* Better readability for paragraphs */
+        .content p {
+            margin-bottom: 1.5em;
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading state */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+        }
+        
+        /* Error state */
+        .error {
+            text-align: center;
+            padding: 60px 20px;
+            color: #ff6b6b;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 10px;
+            }
+            
+            .content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="content" class="loading">Loading transcript...</div>
+    </div>
+    
+    <script>
+        // Fetch and display the text file
+        fetch('textile.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load transcript');
+                }
+                return response.text();
+            })
+            .then(text => {
+                const contentDiv = document.getElementById('content');
+                contentDiv.className = 'content';
+                contentDiv.textContent = text;
+            })
+            .catch(error => {
+                const contentDiv = document.getElementById('content');
+                contentDiv.className = 'error';
+                contentDiv.textContent = 'Error loading transcript. Make sure textile.txt is in the same folder.';
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>
