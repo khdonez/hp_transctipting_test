@@ -73,7 +73,7 @@
     
     <script>
         // Fetch and display the text file
-        fetch('textile.txt')
+        fetch('hp_cleaned.txt')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to load transcript');
@@ -88,7 +88,7 @@
             .catch(error => {
                 const contentDiv = document.getElementById('content');
                 contentDiv.className = 'error';
-                contentDiv.textContent = 'Error loading transcript. Make sure textile.txt is in the same folder.';
+                contentDiv.textContent = 'Error loading transcript. Make sure text_file.txt is in the same folder.';
                 console.error('Error:', error);
             });
     </script>
